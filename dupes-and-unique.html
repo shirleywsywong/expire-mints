@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>-------Find repeats-------</p>
+    <p>1. Write a function that takes two arrays and returns their intersection as an array.</p>
+    <p>intersection([1, 2 ,3], [2, 3, 4]) -> [2, 3]</p>
+    <p>intersection([a, 1 , 'foo'], ['foo', 17, a]) -> [a, 'foo']</p>
+    <p>2. Then write a function that takes two arrays and returns their non-intersection as an array.</p>
+    <p>unique([1, 2 ,3], [2, 3, 4]) -> [1, 4]</p>
+    <p>unique([a, 1 , 'foo'], ['foo', 17, a]) -> [1, 17]</p>
+    <script id="repeats">
+        function intersection(arr1, arr2) {
+            let set1 = new Set(arr1);
+            let set2 = new Set(arr2);
+            let repeats = new Set();
+
+            for (let elem of set2) {
+                if (set1.has(elem)) {
+                    repeats.add(elem);
+                }
+            }
+            // console.log(repeats)
+            return Array.from(repeats);
+        }
+        console.log(intersection([1, 2, 2 ,3], [2, 3, 4]))
+        console.log(intersection(['a', 1 , 'foo', 15, 3, 7], ['foo', 17, 'a', 6, 7, 15]))
+    </script>
+    <script id="unique">
+        function unique(arr1, arr2) {
+            let bothArray = arr1.concat(arr2); //2,1,2,3,2,3,4,9
+            let set1 = new Set(arr1); //2,1,3
+            let set2 = new Set(arr2); //2,3,4,9
+            let nonRepeat = [];
+
+            for (let elem of bothArray) { //4
+                if (!set1.has(elem) || !set2.has(elem)) { //true || false 
+                    nonRepeat.push(elem)
+                }
+            }
+            return nonRepeat
+        }
+        console.log(unique([2, 1, 2 ,3], [2, 3, 4, 9]))
+        console.log(unique(['a', 1 , 'foo', 15, 3, 7], ['foo', 17, 'a', 6, 7, 15]))
+    </script>
+</body>
+</html>

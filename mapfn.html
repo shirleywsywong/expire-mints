@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Close look at map</title>
+</head>
+<body>
+    <p>-------Map function-------</p>
+    <p>1. Write a map function that add the word 'donut' to each item in the array</p>
+    <p>don1fn(['foo', 17, 'a'])</p>
+    <p>don1fn([2, 3, 4,6,0,10,20])</p>
+    <script id="map">
+        const arrOne = [1, 2 ,3, 5,6,5,4,9,7,8,10,20]
+        const arrTwo = [2, 3, 4,6,0,10,20]
+        const arrThree = ['a', 1 , 'foo']
+        const arrFour = ['foo', 17, 'a']
+        
+        //I wrote the function inside of the map method
+        function don1fn(arr) {
+            let newArr = arr.map(item => {
+                return item + 'donut'
+            })
+            return newArr
+        }
+        console.log(don1fn(arrOne));
+        console.log(don1fn(arrTwo));
+        console.log(don1fn(arrThree));
+        console.log(don1fn(arrFour));
+
+        //\\//\\//\\//\\//\\//\\//\\
+    </script>
+    <p>2. Write the same function but with a callback function that lives outside of map</p>
+    <p>don2fn(['foo', 17, 'a'])</p>
+    <p>don2fn([2, 3, 4,6,0,10,20])</p>
+    <script>    
+        //I wrote the function outside of the map method
+        function don2fn(arr) {
+            let newArr = arr.map(item => cbfn(item))
+
+            function cbfn(item) {
+                return item + 'donut'
+            }
+            return newArr
+        }
+        console.log(don2fn(arrOne));
+        console.log(don2fn(arrTwo));
+        console.log(don2fn(arrThree));
+        console.log(don2fn(arrFour));
+    </script>
+</body>
+</html>

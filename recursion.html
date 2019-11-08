@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>-------Recursion-------</p>
+    <p>Given 2 numbers n and m, using recursion, write a function that multiplies n itself by m number of times</p>
+    <script id="recursion">
+        //THE FOLLOWING CODE DOESN'T WORK, IT GOES INTO AN INFINITE LOOP
+        // let counter=0
+        // function recursion(a,b) {
+        //     //given a=2, b=4;
+        //     //goal 2*2*2*2
+
+        //     //anything to the power of 0 is 1
+        //     if (b === 0) {
+        //         return 1;
+        //     } else if (counter<b){
+        //         counter++
+        //         return a * recursion(a, b)
+        //     }
+        // }
+
+        // recursion(2,4);
+
+        //\\//\\//\\//\\//\\//\\
+        const power = (x, y) =>{
+            if (y == 1){
+                return x;
+            }else{
+                return x * power(x, y -1);
+            }
+        }
+        //(2,(2,(2,(2,1))))
+    </script>
+</body>
+</html>
