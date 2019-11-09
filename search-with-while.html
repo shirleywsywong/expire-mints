@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Search with While</title>
+    <title>Search</title>
     <style>
     body {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -14,19 +14,26 @@
         max-width: 900px;
         margin: 0 auto;
     }
+    .error {
+        height: 50px;
+    }
+    .match {
+        background: yellow;
+    }
     </style>
 </head>
 <body>
-    <p>Purpose: use while loop to run a search function.</p>
     <p>Instruction: type in a word in the input field and see if the word is in the article below.</p>
-    <form action="">
-        <input type="text">
-        <input type="submit">
+    <form>
+        <input type="text" id="searchField">
+        <button id="getSearchInput">Search</button>
     </form>
+    <div class="error" id="error"></div>
     <p>Article Source: <a href="https://www.cbc.ca/news/business/job-market-employers-employees-ghosting-1.5350709">CBC News</a></p>
     <article>
-        <h1>Vanishing act: Ghosting moves from the dating world to the job market</h1>
+        <h1>Vanishing act: Ghosting moves from the dating world to the job market 👻</h1>
         <h2>In this hot labour market, some workers aren't showing up for interviews or even their first day on the job</h2>
+
         <p>Canada's hot job market is proving a challenge for employers and recruiters alike, as finding staff has become an increasingly difficult task in some sectors.</p>
     
         <p>In fact, some workers have adopted the practice of ghosting, usually used to sever social ties with someone without any explanation, to manage their careers.</p>
@@ -34,6 +41,8 @@
         <p>"I can book appointments for five people to come and have an interview and out of those five, three could be no-shows," said Cathline James of Wise Bites, a snack-maker in Richmond B.C.</p>
     
         <p>James employs 10 people to make bars, cookies and muffins free of the most common food allergens like dairy, nuts and wheat.</p>
+
+        <img src="trial.jpg" alt="acacia tree in Kenya">
     
         <p>Already stocked in more than 400 stores across Canada, James says the demand for allergen-free products is making it hard to keep up with a growing list of orders.</p>
     
