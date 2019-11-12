@@ -19,7 +19,7 @@ document.getElementById("getSearchInput").onclick = function (event) {
 //find the matching word in the content
 function findMatch(input) {
     let match = [...content.matchAll(input)]
-    console.log(match)
+    // console.log(match)
     checkMatch(match)
 }
 
@@ -42,11 +42,11 @@ function checkMatch(matches) {
             console.log(word, matchWordStart, matchWordEnd)
             // word.classList.add("match")
             
-            let span = document.createElement('span');
-            let textNode = document.createTextNode('oooOOOOOoooo');
-            span.innerHTML = textNode;
-            var li = document.createElement('li');
-            li.appendChild(span);
+            // let span = document.createElement('span');
+            // let textNode = document.createTextNode('oooOOOOOoooo');
+            // span.innerHTML = textNode;
+            // var li = document.createElement('li');
+            // li.appendChild(span);
 
         }
     }

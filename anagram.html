@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anagram</title>
+</head>
+<body>
+    <p>Check to see if 2 strings are anagram of each other</p>
+    <p>Return: True or False</p>
+    <p>anagram('listen', 'silent') return True</p>
+    <p>anagram('racecar', 'accelerate') return False</p>
+    <p>anagram('moon', 'monn') return False</p>
+    <p>anagram('moon', 'mono') return True</p>
+    <p>anagram('poster', 'postman') return False</p>
+    <p>anagram('poster', 'repost') return True</p>
+    <p>anagram('poster', 'post') return False</p>
+    <script>
+        anagram = (string1, string2) => {
+            let arr1 = [...string1].sort();
+            let arr2 = [...string2].sort();
+            let isAnagram = false;
+            let length = 0;
+
+            if (arr1.length >= arr2.length) {
+                length = arr1.length
+            } else {
+                length = arr2.length
+            }
+            
+            for (let i=0; i<length; i++) {
+                if (arr1[i] === arr2[i]) {
+                    isAnagram = true;
+                } else {
+                    return isAnagram = false;
+                }
+            }
+            return isAnagram;
+        }
+    </script>
+</body>
+</html>
