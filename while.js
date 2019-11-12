@@ -1,5 +1,7 @@
 //get all the content in the article
-let content = document.getElementsByTagName('article')[0].innerText
+let content = document.getElementsByTagName('article')[0].innerHTML
+// let content2 = document.getElementsByTagName('article')[0].children
+// console.log(content2)
 
 //get the search term from the input field
 document.getElementById("getSearchInput").onclick = function (event) {
@@ -32,21 +34,15 @@ function checkMatch(matches) {
 
         for (const match of matches) {
 
-            console.log(`Found ${match[0]} start=${match.index} end=${match.index + match[0].length}.`)
+            // console.log(match, `Found ${match[0]} start=${match.index} end=${match.index + match[0].length}.`)
             let word = match[0];
             let wordStart = match.index;
-            let wordEnd = match.index + match[0].length-1
+            let wordEnd = match.index + match[0].length
+            let preText = content.substring(0, wordStart)
+            let postText = content.substring(wordEnd, content.length)
 
-            let matchWordStart = content[wordStart]
-            let matchWordEnd = content[wordEnd]
-            console.log(word, matchWordStart, matchWordEnd)
-            // word.classList.add("match")
-            
-            // let span = document.createElement('span');
-            // let textNode = document.createTextNode('oooOOOOOoooo');
-            // span.innerHTML = textNode;
-            // var li = document.createElement('li');
-            // li.appendChild(span);
+            document.getElementsByTagName('article')[0].innerHTML = 
+            (preText + `<span class="match">` + word + `</span>` + postText)
 
         }
     }
