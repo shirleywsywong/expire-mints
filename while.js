@@ -1,7 +1,5 @@
 //get all the content in the article
-let content = document.getElementsByTagName('article')[0].innerHTML
-// let content2 = document.getElementsByTagName('article')[0].children
-// console.log(content2)
+const content = document.getElementsByTagName('article')[0].innerHTML
 
 //get the search term from the input field
 document.getElementById("getSearchInput").onclick = function (event) {
@@ -19,31 +17,58 @@ document.getElementById("getSearchInput").onclick = function (event) {
 }
 
 //find the matching word in the content
-function findMatch(input) {
+const findMatch = (input) => {
     let match = [...content.matchAll(input)]
-    // console.log(match)
     checkMatch(match)
 }
 
-//go through the results array, and give this word a background of yellow
+//check to see if there's any search result
 function checkMatch(matches) {
-    
     if (matches.length == 0) {
-        document.getElementById("error").innerHTML = (`Your search did not return any result.`)
-    } else {
-
-        for (const match of matches) {
-
-            // console.log(match, `Found ${match[0]} start=${match.index} end=${match.index + match[0].length}.`)
-            let word = match[0];
-            let wordStart = match.index;
-            let wordEnd = match.index + match[0].length
-            let preText = content.substring(0, wordStart)
-            let postText = content.substring(wordEnd, content.length)
-
-            document.getElementsByTagName('article')[0].innerHTML = 
-            (preText + `<span class="match">` + word + `</span>` + postText)
-
-        }
+        return document.getElementById("error").innerHTML = (`Your search did not return any result.`)
     }
+    recordMatch(matches)
+}
+
+//record where the word is found
+function recordMatch(matches) {
+    let word = matches[0][0];
+    let wordStart = [];
+    let wordEnd = [];
+    
+    for (const match of matches) {
+        wordStart.push(match.index)
+        wordEnd.push(match.index + match[0].length)
+    }
+
+    highlightMatch(word, wordStart, wordEnd)
+}
+
+//highlight the matched word in the text
+function highlightMatch(word, wordStart, wordEnd) {
+
+    //replace the matched word with highlighting span
+    let highlight = word.replace(word, `<span class="match">` + word + `</span>`)
+    
+    //get the content from the beginning to where the first word is
+    let preText = content.substring(0, wordStart[0])
+    
+    //get all the content from where the 1st word ends to where the 2nd word begin
+    let midText = []
+    for (let i = 0; i<wordStart.length; i++) {
+        midText.push(content.substring(wordEnd[i], wordStart[i+1]))
+    }
+    
+    //assemble the highlighted word with the midtext
+    let midCount = 0;
+    let postText = [];
+    while (midCount < wordStart.length) {
+        postText.push(highlight + midText[midCount])
+        midCount++
+    }
+
+    //push everything to the DOM
+    document.getElementsByTagName('article')[0].innerHTML = 
+    (preText + postText.join(" "))
+
 }
