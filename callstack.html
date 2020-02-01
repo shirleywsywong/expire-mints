@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>Open the console</p>
+    <p>func1 doesn't get resolved until all nested functions are resolved</p>
+    <script>
+        const func1 = function() {
+            const variable = 5
+            console.log(`function 1 start`)
+            func2(variable)
+            console.log('function 1 resolved')
+        }
+        const func2 = function(variable) {
+            console.log(`function 2 start`)
+            func3(variable)
+            console.log('function 2 resolved')
+        }
+        const func3 = function(variable) {
+            console.log(`function 3 start`)
+            console.log(variable)
+            console.log('function 3 resolved')
+        }
+        func1()
+    </script>
+</body>
+</html>

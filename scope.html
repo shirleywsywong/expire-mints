@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scope bubble and hoisting</title>
+</head>
+<body>
+    <h2>Lexical Scope</h2>
+    <p>A function has access to variables that are defined in its calling context. The formal name of this phenomenon is the lexical scope.</p>
+
+    <h2>Function declaration vs. function expression</h2>
+    <p>- function declaration: Javascript lets you access declared function before it's been defined (because of hoisting)</p>
+    <p>- function expression: observe the way it's written: </p>
+    <ul>
+        <li>const fn = function() {...}</li>
+        <li>const fn = () => {...}</li>
+    </ul>
+    <p>Javascript is creating a variable 'fn' first, which inherently has a value of undefined, and then when the function 'fn' is called, it then evaluates the function to the right of the assignment operator. Which is why you need to write the function first before you can call it</p>
+    <h2>Hoisting</h2>
+    <p>When you use 'var' and function declaration, javascript automatically hoist these variables/functions to the top of its scope, letting you access these variables before it's been defined. </p>
+    <script id='function-declaration-scope'>
+        //for function declaraction, it declares all the functions first before running the code, that's why you can call the function before writing the function, and the console log bubble3 works
+        const soup = 5;
+        function bubble1() {
+            const taco = 7;
+            bubble2()
+            function bubble2() {
+                bubble3()
+                console.log(bubble3)
+                function bubble3() {
+                    bubble4()
+                    function bubble4() {
+                        const beans = 12
+                        console.log(soup)
+                        console.log(taco)
+                    }
+                }
+            }
+        }
+        //this doesn't work b/c bubble1 is not an object with a method of bubble2
+        // bubble1().bubble2().bubble3().bubble4()
+        bubble1()
+    </script>
+    <script id='function-expression-scope'>
+    //when using arrow function (a kind of function expression), javascript assigns undefined to bubbleTea3 first as a variable. Then when bubbleTea3 is called, it looks for bubbleTea3 and assign it with the value of a function '() => {}', which is why bubbleTea3 is undefined in console log, and you can only call the function after it's been written.
+        const tea = 5;
+        const bubbleTea1 = () => {
+            const pearls = 7;
+            const bubbleTea2 = () => {
+                console.log(bubbleTea3)
+                const bubbleTea3 = () => {
+                    const bubbleTea4 = () => {
+                        console.log(tea)
+                        console.log(pearls)
+                    }
+                    bubbleTea4()
+                }
+                bubbleTea3()
+            }
+            bubbleTea2()
+        }
+        bubbleTea1()
+    </script>
+    <script id="hoisting-var">
+        //hoisting a variable
+        dumpling = 'yum yum';
+        console.log(dumpling)
+        var dumpling
+
+        //\\//\\//\\//\\//\\//\\//\\//\\
+        //trying to use var to hoist an arrow function (function expression)
+        console.log(noodle)
+        var noodle = () => {
+            console.log('slurp')
+        }
+        //returns undefined b/c the variable is hoisted, but not yet assigned
+
+    </script>
+    <script id="hoisting-const">
+        console.log(bao) 
+        const bao = function() {
+            console.log('steamy')
+        }
+        //error says cannot access before initialize because const/let variables doesn't get hoisted. This error is different from undefined. 
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>This keyword</title>
+</head>
+<body>
+    <script>
+        //function declaration
+        function pasta() {
+            console.log(this)
+        }
+        pasta()
+
+        //function expression
+        const soup = () => {
+            console.log(this)
+        }
+        soup()
+        //both refers to the window
+
+        //\\//\\//\\//\\//\\//\\//\\
+        const user = {
+            //function declaration
+            greeting: function() {
+                console.log(this)
+            },
+            //function expression
+            cursing: () => {
+                console.log(this)
+            }
+        }
+        user.greeting()
+        user.cursing()
+        //function declaration's 'this' refers to the user object
+        //function expression's 'this' refers to the window
+    </script>
+</body>
+</html>
